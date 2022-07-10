@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="fragments/headerfiles.html :: headertitle"/>
+    <th:block th:include="fragments/headerfiles.html :: headerfiles"/>
+    <link rel="stylesheet" th:href="@{/css/topMenu.css}"/>
+</head>
+<body>
+<header th:insert="fragments/topMenu :: topMenu"></header>
+<div id="mainDiv">
+    <table class="table table-bordered table-hover horizontal-align">
+        <thead>
+        <tr>
+            <th style="width: auto">Заголовок</th>
+            <th style="width: auto">Текст заметки</th>
+            <th class="dropdown" style="width: 20%">Дата последнего изменения</th>
+            <th style="width: auto">Приватоность</th>
+            <th style="width: auto">Редактировать</th>
+            <th style="width: auto">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="note : ${notes}">
+            <td th:text="${note.title}"></td>
+            <td th:utext="${note.content}"></td>
+            <td th:text="${#dates.format(note.lastUpdate, 'EEE, d MMM yyyy HH:mm')}" style="text-align: center">Date
+            </td>
+            <td style="text-align: center">
+                <i th:if="${note.privacy} == true">Приватная</i>
+                <i th:if="${note.privacy} == false">Публичная</i>
+            </td>
+            <td style="text-align: center"><a th:href="@{'/edit/{id}'(id=${note.id})}">р</a></td>
+            <td style="text-align: center"><a th:href="@{'/delete/{id}'(id=${note.id})}">у</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/addNote">
+        <button class="addNoteButton" type="submit">+</button>
+    </a>
+</div>
+</body>
+</html>

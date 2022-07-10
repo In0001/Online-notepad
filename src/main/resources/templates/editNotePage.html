@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:include="fragments/headerfiles.html :: headertitle"/>
+        <th:block th:include="fragments/headerfiles.html :: headerfiles"/>
+        <link rel="stylesheet" th:href="@{/css/topMenu.css}" />
+    </head>
+    <body>
+        <header th:insert="fragments/topMenu :: topMenu"></header>
+        <div id="mainDiv">
+            <form method="post">
+                <label>
+                    <input id ="title" type="text" name="title" maxlength="230" th:value="${note.title}"/>
+                </label>
+                <label>
+                    <textarea id="summernote" name="content" th:utext="${note.content}"></textarea>
+                </label>
+                <div th:if="${note.privacy} == true">
+                    <input type="checkbox" id="checkbox1" name="checkbox" checked="checked">
+                    <label for="checkbox1">Приватная заметка</label>
+                </div>
+                <div th:if="${note.privacy} == false">
+                    <input type="checkbox" id="checkbox2" name="checkbox">
+                    <label for="checkbox2">Приватная заметка</label>
+                </div>
+                <button>Сохранить</button>
+                <script src = "/js/startSummernote.js"></script>
+            </form>
+        </div>
+    </body>
+</html>
