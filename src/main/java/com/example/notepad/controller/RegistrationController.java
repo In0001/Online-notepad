@@ -49,7 +49,7 @@ public class RegistrationController {
         }
 
         User user = new User(email, username, encoder.encode(password));
-        user.setRoles(EnumSet.of(Role.USER));
+        user.setRoles(EnumSet.of(Role.ROLE_USER));
         userRepository.save(user);
 
         return "redirect:/login";

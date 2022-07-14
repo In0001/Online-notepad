@@ -11,9 +11,9 @@ public class Note {
     private Long id;
 
     private String title;
+    @Lob
     private String content;
     private Date lastUpdate;
-
     private boolean privacy;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

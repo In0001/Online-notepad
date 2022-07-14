@@ -10,21 +10,21 @@
         <div id="mainDiv">
             <form method="post">
                 <label>
-                    <input id ="title" type="text" name="title" maxlength="230" th:value="${note.title}"/>
+                    <input id ="title" type="text" name="title" maxlength="255" th:value="${note.title}"/>
                 </label>
                 <label>
                     <textarea id="summernote" name="content" th:utext="${note.content}"></textarea>
                 </label>
-                <div th:if="${note.privacy} == true">
+                <button id="button">Сохранить</button>
+                <div class="checkboxDiv" th:if="${note.privacy} == true">
                     <input type="checkbox" id="checkbox1" name="checkbox" checked="checked">
                     <label for="checkbox1">Приватная заметка</label>
                 </div>
-                <div th:if="${note.privacy} == false">
-                    <input type="checkbox" id="checkbox2" name="checkbox">
+                <div class="checkboxDiv" th:if="${note.privacy} == false">
+                    <input type="checkbox" id="checkbox2" name="checkbox" th:onChange="onChangeCheckBox1()">
                     <label for="checkbox2">Приватная заметка</label>
                 </div>
-                <button>Сохранить</button>
-                <script src = "/js/startSummernote.js"></script>
+                <script src = "/js/scripts.js"></script>
             </form>
         </div>
     </body>

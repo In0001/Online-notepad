@@ -5,6 +5,7 @@ import com.example.notepad.model.User;
 import com.example.notepad.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ public class NoteServiceImpl implements NoteService {
         this.repository = repository;
     }
 
+    @Transactional
     @Override
     public Note findById(Long id) {
         return repository.findById(id).get();
@@ -28,6 +30,7 @@ public class NoteServiceImpl implements NoteService {
         repository.save(note);
     }
 
+    @Transactional
     @Override
     public void updateNote(Long id, String title, String content, boolean checkbox) {
         Optional<Note> optionalNote = repository.findById(id);
@@ -44,11 +47,13 @@ public class NoteServiceImpl implements NoteService {
         repository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public List<Note> findAllByAuthor(User author) {
         return repository.findAllByAuthor(author);
     }
 
+    @Transactional
     @Override
     public List<Note> findAllByPrivacy(boolean privacy) {
         return repository.findAllByPrivacy(privacy);

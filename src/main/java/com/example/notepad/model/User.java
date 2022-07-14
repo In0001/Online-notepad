@@ -13,6 +13,8 @@ public class User {
     private String username;
     private String password;
 
+    private boolean isNonBlocked;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -25,6 +27,7 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.isNonBlocked = true;
     }
 
     public Long getId() {
@@ -57,6 +60,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isNonBlocked() {
+        return isNonBlocked;
+    }
+
+    public void setNonBlocked(boolean nonBlocked) {
+        isNonBlocked = nonBlocked;
     }
 
     public Set<Role> getRoles() {

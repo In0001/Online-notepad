@@ -1,5 +1,5 @@
 <div th:fragment="topMenu">
-    <div class="container">
+    <li class="container">
         <div class="logo-box">
             <a href="/">
                 <img src="/img/notepad.ico" alt=""/>Онлайн блокнот
@@ -18,7 +18,8 @@
                         <li><a href="/logout">Выйти</a></li>
                     </ul>
                 </li>
-                <li sec:authorize="isAnonymous()"><a class="atopmenu" href="/login">Вход</a>
+                <li sec:authorize="isAnonymous()"><a class="atopmenu" href="/login">Вход</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a class="atopmenu" href="/users">Пользователи</a></li>
                 <li><a class="atopmenu" href="/">Главная</a></li>
             </ul>
         </nav>

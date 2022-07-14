@@ -37,10 +37,13 @@ public class NoteController {
 
         if (principal != null) {
             note.setAuthor(userRepository.findByUsername(principal.getName()).get());
+            service.saveNote(note);
+            return "redirect:/edit/" + note.getId();
         }
 
         service.saveNote(note);
-        return "redirect:/addNote";
+
+        return "redirect:/";
     }
 
     @GetMapping("/userNotes")

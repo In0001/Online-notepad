@@ -8,32 +8,30 @@
 <body>
 <header th:insert="fragments/topMenu :: topMenu"></header>
 <div id="mainDiv">
-    <table class="table table-bordered table-hover horizontal-align">
-        <thead>
-        <tr>
-            <th style="width: auto">Заголовок</th>
-            <th style="width: auto">Текст заметки</th>
-            <th class="dropdown" style="width: 20%">Дата последнего изменения</th>
-            <th style="width: auto">Приватоность</th>
-            <th style="width: auto">Редактировать</th>
-            <th style="width: auto">Удалить</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="note : ${notes}">
-            <td th:text="${note.title}"></td>
-            <td th:utext="${note.content}"></td>
-            <td th:text="${#dates.format(note.lastUpdate, 'EEE, d MMM yyyy HH:mm')}" style="text-align: center">Date
-            </td>
-            <td style="text-align: center">
-                <i th:if="${note.privacy} == true">Приватная</i>
-                <i th:if="${note.privacy} == false">Публичная</i>
-            </td>
-            <td style="text-align: center"><a th:href="@{'/edit/{id}'(id=${note.id})}">р</a></td>
-            <td style="text-align: center"><a th:href="@{'/delete/{id}'(id=${note.id})}">у</a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div>
+        <div class=mailPageLabel th:each="note: ${notes}" id="noteText" style="margin-top: 20px">
+            <div style="text-align: right">
+                <i th:if="${note.privacy} == true" style="color: darkred">Приватная заметка</i>
+                <i th:if="${note.privacy} == false" style="color: green">Публичная заметка</i><br/>
+                <span>Последнее изменение: </span>
+                <i th:text="${#dates.format(note.lastUpdate, 'EEE, d MMM yyyy HH:mm')}" style="text-align: center">Date</i>
+            </div>
+            <details>
+                <summary>
+                    <span th:text="${note.title}"></span>
+                </summary>
+                <p th:utext="${note.content}"></p>
+            </details>
+            <div style="text-align: right">
+                <a style="color: black; float: right" th:href="@{'/delete/{id}'(id=${note.id})}">
+                    <img src="/img/delete.png" alt="d"/>
+                </a>
+                <a style="color: black" th:href="@{'/edit/{id}'(id=${note.id})}">
+                    <img src="/img/edit.png" alt="e"/>
+                </a>
+            </div>
+        </div>
+    </div>
     <a href="/addNote">
         <button class="addNoteButton" type="submit">+</button>
     </a>

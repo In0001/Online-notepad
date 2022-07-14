@@ -10,21 +10,21 @@
         <div id="mainDiv">
             <form method="post">
                 <label>
-                    <input id ="title" type="text" name="title" maxlength="230" placeholder="Заголовок"/>
+                    <input id ="title" type="text" name="title" maxlength="255" placeholder="Заголовок"/>
                 </label>
                 <label>
                     <textarea id="summernote" name="content"></textarea>
                 </label>
-                <div sec:authorize="isAuthenticated()">
-                    <input type="checkbox" id="checkbox1" name="checkbox">
+                <button id="button">Опубликовать</button>
+                <div class="checkboxDiv" sec:authorize="isAuthenticated()">
+                    <input type="checkbox" id="checkbox1" name="checkbox" th:onChange="onChangeCheckBox1()">
                     <label for="checkbox1">Приватная заметка</label>
                 </div>
-                <div sec:authorize="isAnonymous()">
+                <div class="checkboxDiv" sec:authorize="isAnonymous()">
                     <input type="checkbox" id="checkbox2" name="checkbox" disabled="disabled">
                     <label for="checkbox2">Приватная заметка (только для зарегистрированных пользователей)</label>
                 </div>
-                <button id="button">Сохранить</button>
-                <script src = "/js/startSummernote.js"></script>
+                <script src = "/js/scripts.js"></script>
             </form>
         </div>
     </body>

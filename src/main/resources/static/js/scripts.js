@@ -17,3 +17,16 @@ $(document).ready(function () {
         ],
     })
 });
+
+function onChangeCheckBox1() {
+    let checkbox;
+    let button;
+    checkbox = document.getElementById("checkbox1");
+    button = document.getElementById("button");
+
+    if (checkbox.checked) {
+        button.innerHTML = "Сохранить";
+    } else {
+        button.innerHTML = "Опубликовать";
+    }
+}

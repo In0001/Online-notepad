@@ -9,24 +9,22 @@
     <header th:insert="fragments/topMenu :: topMenu"></header>
     <div id="mainDiv">
         <div id="titleDiv">
-            <h1>Добро пожаловать!</h1>
+            <h1>Добро пожаловать в онлайн блокнот!</h1>
         </div>
-        <div>
-            <div th:each="note: ${notes}" id="noteText">
-                <details>
-                    <summary>
-                        <span th:text="${note.title}" ></span>
-                        <span style="float: right">Последнее изменение:
-                            <span th:text="${#dates.format(note.lastUpdate, 'EEE, d MMM yyyy HH:mm')}"></span></span>
-                        <span>Автор: <span th:text="${note.authorName}"></span></span>
-                    </summary>
-                    <p th:utext="${note.content}"></p>
-                </details>
+        <div th:each="note: ${notes}" id="noteText">
+            <div class=mailPageLabel>
+                <div style="width: 100%; text-align: right; padding-right: 1%">
+                    <span>Автор: </span>
+                    <span th:text="${note.authorName}"></span>
+                </div>
+                <label id="topLabel" th:text="${note.title}"></label>
+                <label id="bottomLabel" th:utext="${note.content}"></label>
             </div>
+            <br/>
         </div>
-        <a href="/addNote">
-            <button class="addNoteButton" type="submit">+</button>
-        </a>
     </div>
+    <a href="/addNote">
+        <button class="addNoteButton">+</button>
+    </a>
 </body>
 </html>

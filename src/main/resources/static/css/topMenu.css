@@ -35,7 +35,6 @@ li {
 
 a {
     color: var(--white);
-    text-transform: uppercase;
     text-decoration: none;
     padding: 5px 18px 5px 18px;
     display: block;
@@ -99,6 +98,7 @@ nav ul {
     font-size: 13px;
     border-top: 1px solid white;
     border-left: 1px solid white;
+    border-right: 1px solid white;
 }
 
 .submenu a:hover {

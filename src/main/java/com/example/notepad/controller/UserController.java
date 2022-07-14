@@ -3,12 +3,10 @@ package com.example.notepad.controller;
 import com.example.notepad.model.User;
 import com.example.notepad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +29,11 @@ public class UserController {
     }
 
     @PostMapping("/userInfo")
-    public String updateUserInfo(@RequestParam String email, @RequestParam String username) {
-        return "redirect:/userInfo";
+    public String updateUserInfo(Principal principal, @RequestParam String email, @RequestParam String username) {
+        User user = userRepository.findByUsername(principal.getName()).get();
+        user.setEmail(email);
+        user.setUsername(username);
+        userRepository.save(user);
+        return "redirect:/login";
     }
 }
